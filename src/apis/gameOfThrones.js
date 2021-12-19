@@ -1,5 +1,5 @@
-import axios from "axios";
+import axios from 'axios';
 
 export default axios.create({
-  baseURL: "https://game-of-thrones-quotes.herokuapp.com/v1/house",
+    baseURL: 'https://game-of-thrones-quotes.herokuapp.com/v1/house',
 });
