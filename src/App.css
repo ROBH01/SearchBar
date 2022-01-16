@@ -32,3 +32,9 @@
         transform: rotate(360deg);
     }
 }
+
+.buttonsContainer {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}

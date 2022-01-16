@@ -1,0 +1,49 @@
+.button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 20px 0px;
+    cursor: pointer;
+    font-weight: 500;
+    padding: 13px 25px;
+    border-radius: 15px;
+    font-size: 1rem;
+    border: none;
+    color: #fff;
+    transition: all 0.25s ease;
+}
+
+.button:hover {
+    transform: translateY(-5px);
+}
+
+.reverse {
+    flex-direction: row-reverse;
+}
+
+.primaryBG {
+    background: #185adb;
+}
+
+.primaryBG:hover {
+    box-shadow: 0 10px 20px -10px rgba(24, 90, 219, 0.6);
+}
+
+.normalBG {
+    background: #363449;
+}
+
+.normalBG:hover {
+    box-shadow: 0 10px 20px -10px rgba(54, 52, 73, 0.6);
+}
+
+.icon {
+    margin-bottom: -5px;
+    margin-right: 6px;
+    margin-left: 0px;
+}
+
+.iconRight {
+    margin-right: 0px;
+    margin-left: 6px;
+}
