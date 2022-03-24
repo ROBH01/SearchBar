@@ -1,32 +1,47 @@
 import { useEffect, useState } from 'react';
 
-const useMediaQuery = () => {
-    const getDeviceType = (currentWidth) => {
-        const isMobile = currentWidth < 576;
-        const isTablet = currentWidth >= 576 && currentWidth < 992;
-        const isDesktop = currentWidth >= 992;
+const DEVICE_TYPES = {
+    mobile: 'Mobile',
+    tablet: 'Tablet',
+    desktop: 'Desktop',
+}
 
-        return isMobile ? 'mobile' : isTablet ? 'tablet' : isDesktop ? 'desktop' : undefined;
+const getDeviceType = (currentWidth) => {
+    let deviceType = undefined
+
+    if (currentWidth < 576) {
+        deviceType = DEVICE_TYPES.mobile
+    } else if (currentWidth >= 576 && currentWidth < 992) {
+        deviceType = DEVICE_TYPES.tablet
+    } else if (currentWidth >= 992) {
+        deviceType = DEVICE_TYPES.desktop
+    }
+
+    return deviceType
+}
+
+/**
+ * Custom hook that returns the `deviceType` based on the width of the inner window.
+ * @returns deviceType `Mobile`|`Tablet`|`Desktop`
+ */
+const useMediaQuery = () => {
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+    const [deviceType, setDeviceType] = useState(getDeviceType(window.innerWidth))
+
+    const resizeHandler = () => {
+        const currentWindowWidth = window.innerWidth;
+        const deviceType = getDeviceType(currentWindowWidth);
+        setWindowWidth(currentWindowWidth);
+        setDeviceType(deviceType)
     };
 
-    const [state, setState] = useState({
-        windowWidth: window.innerWidth,
-        deviceType: getDeviceType(window.innerWidth),
-    });
-
     useEffect(() => {
-        const resizeHandler = () => {
-            const currentWindowWidth = window.innerWidth;
-            const deviceType = getDeviceType(currentWindowWidth);
-            setState({ windowWidth: currentWindowWidth, deviceType });
-        };
-
         window.addEventListener('resize', resizeHandler);
 
         return () => window.removeEventListener('resize', resizeHandler);
-    }, [state.windowWidth]);
+    }, [windowWidth]);
 
-    return state.deviceType;
+    return deviceType;
 };
 
 export default useMediaQuery;
