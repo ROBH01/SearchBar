@@ -21,19 +21,19 @@
     flex-direction: row-reverse;
 }
 
-.primaryBG {
+.primary {
     background: #185adb;
 }
 
-.primaryBG:hover {
+.primary:hover {
     box-shadow: 0 10px 20px -10px rgba(24, 90, 219, 0.6);
 }
 
-.normalBG {
+.default {
     background: #363449;
 }
 
-.normalBG:hover {
+.default:hover {
     box-shadow: 0 10px 20px -10px rgba(54, 52, 73, 0.6);
 }
 

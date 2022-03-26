@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import gameOfThrones from './got-api';
+import gotApi from './got-api';
 
 const useGameOfThronesFetch = () => {
     const [slug, setSlug] = useState('')
@@ -9,7 +9,7 @@ const useGameOfThronesFetch = () => {
         if (slug !== '') {
             const timeoutId = setTimeout(async () => {
                 try {
-                    const res = await gameOfThrones.get(`/${slug}`);
+                    const res = await gotApi.get(`/${slug}`);
                     setResults(res.data)
                 } catch (err) {
                     console.error(err);
@@ -20,7 +20,7 @@ const useGameOfThronesFetch = () => {
         }
     }, [slug]);
 
-    return { slug, results, setSlug};
+    return { slug, results, setSlug };
 }
 
 export default useGameOfThronesFetch

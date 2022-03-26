@@ -4,17 +4,23 @@ import classNames from 'classnames';
 import styles from './Button.module.css';
 
 const Button = ({ icon, hasIconRight, title, onClick, primary }) => {
+    const btnClasses = classNames([
+        styles.button,
+        primary ? styles.primary : styles.default,
+        hasIconRight && styles.reverse
+    ])
+
+    const iconClasses = classNames([
+        styles.icon, hasIconRight && styles.iconRight
+    ])
+
     return (
         <button
-            className={classNames([
-                styles.button,
-                primary ? styles.primaryBG : styles.normalBG,
-                hasIconRight && styles.reverse,
-            ])}
+            className={btnClasses}
             onClick={onClick}
         >
             {!!icon && (
-                <span className={classNames([styles.icon, hasIconRight && styles.iconRight])}>
+                <span className={iconClasses}>
                     {icon}
                 </span>
             )}

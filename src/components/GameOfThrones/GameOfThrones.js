@@ -6,17 +6,20 @@ import reactLogo from '../../react-logo.svg'
 import { HiOutlineSpeakerphone } from 'react-icons/hi';
 import { BiRightArrowAlt } from 'react-icons/bi';
 
+import styles from './GameOfThrones.module.css';
+
 const GameOfThrones = () => {
     const { slug, results, setSlug } = useGameOfThronesFetch();
+
     const speakerIcon = <HiOutlineSpeakerphone />
     const rightArrowIcon = <BiRightArrowAlt />
+
     const hasResults = results.length > 0 && slug !== '';
 
-    const NoResults = ({ message }) => (
+    const NoResults = ({ message = 'No results found' }) =>
         <h5>
             {slug === '' ? 'Game Of Thrones house members will be shown here' : message}
         </h5>
-    )
 
     const callback = useCallback((message) => {
         alert(message);
@@ -29,15 +32,15 @@ const GameOfThrones = () => {
                     type="search"
                     placeholder="Type your favorite house"
                     value={slug}
-                    style={{ height: 40, width: 320, fontSize: 20 }}
+                    className={styles.searchInput}
                     onChange={(e) => setSlug(e.target.value.toLowerCase())}
                 />
-                { hasResults ? <House family={results[0]} /> : <NoResults message="No results found" /> }
+                {hasResults ? <House family={results[0]} /> : <NoResults />}
             </main>
 
-            <img src={reactLogo} className="App-logo" alt="logo" />
+            <img src={reactLogo} className={styles.reactLogo} alt="react-logo" />
 
-            <div className="buttonsContainer">
+            <div className={styles.buttonsContainer}>
                 <Button
                     icon={speakerIcon}
                     title="Let us know"

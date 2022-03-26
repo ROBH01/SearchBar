@@ -1,0 +1,32 @@
+.searchInput {
+    height: 40px;
+    width: 320px;
+    font-size: 20px;
+}
+
+.buttonsContainer {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.reactLogo {
+    height: 20vmin;
+    pointer-events: none;
+    user-select: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .reactLogo {
+        animation: react-logo-spin infinite 2s alternate;
+    }
+}
+
+@keyframes react-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
