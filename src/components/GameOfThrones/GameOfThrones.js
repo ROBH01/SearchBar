@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
 import Button from '../Button';
 import House from './House';
-import useGameOfThronesFetch from "./useGameOfThronesFetch";
-import reactLogo from '../../react-logo.svg'
+import useGameOfThronesFetch from './useGameOfThronesFetch';
+import reactLogo from '../../react-logo.svg';
 import { HiOutlineSpeakerphone } from 'react-icons/hi';
 import { BiRightArrowAlt } from 'react-icons/bi';
 
@@ -11,15 +11,14 @@ import styles from './GameOfThrones.module.css';
 const GameOfThrones = () => {
     const { slug, results, setSlug } = useGameOfThronesFetch();
 
-    const speakerIcon = <HiOutlineSpeakerphone />
-    const rightArrowIcon = <BiRightArrowAlt />
+    const speakerIcon = <HiOutlineSpeakerphone />;
+    const rightArrowIcon = <BiRightArrowAlt />;
 
     const hasResults = results.length > 0 && slug !== '';
 
-    const NoResults = ({ message = 'No results found' }) =>
-        <h5>
-            {slug === '' ? 'Game Of Thrones house members will be shown here' : message}
-        </h5>
+    const NoResults = ({ message = 'No results found' }) => (
+        <h5>{slug === '' ? 'Game Of Thrones house members will be shown here' : message}</h5>
+    );
 
     const callback = useCallback((message) => {
         alert(message);
@@ -59,7 +58,7 @@ const GameOfThrones = () => {
                 />
             </div>
         </>
-    )
-}
+    );
+};
 
-export default GameOfThrones
+export default GameOfThrones;

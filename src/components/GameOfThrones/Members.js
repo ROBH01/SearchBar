@@ -1,8 +1,11 @@
 import React from 'react';
 
-const Members = ({ members }) =>
+const Members = ({ members }) => (
     <ul>
-        {members.map(({ name }, index) => <li key={index}>{name}</li>)}
+        {members.map(({ name }, index) => (
+            <li key={index}>{name}</li>
+        ))}
     </ul>
+);
 
-export default Members
+export default Members;

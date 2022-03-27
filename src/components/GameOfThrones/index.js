@@ -1,1 +1,1 @@
-export { default } from './GameOfThrones'
+export { default } from './GameOfThrones';

@@ -1,1 +1,1 @@
-export { default } from './ReducerExample'
+export { default } from './ReducerExample';

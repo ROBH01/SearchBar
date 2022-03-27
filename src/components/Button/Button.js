@@ -7,23 +7,14 @@ const Button = ({ icon, hasIconRight, title, onClick, primary }) => {
     const btnClasses = classNames([
         styles.button,
         primary ? styles.primary : styles.default,
-        hasIconRight && styles.reverse
-    ])
+        hasIconRight && styles.reverse,
+    ]);
 
-    const iconClasses = classNames([
-        styles.icon, hasIconRight && styles.iconRight
-    ])
+    const iconClasses = classNames([styles.icon, hasIconRight && styles.iconRight]);
 
     return (
-        <button
-            className={btnClasses}
-            onClick={onClick}
-        >
-            {!!icon && (
-                <span className={iconClasses}>
-                    {icon}
-                </span>
-            )}
+        <button className={btnClasses} onClick={onClick}>
+            {!!icon && <span className={iconClasses}>{icon}</span>}
             <span>{title}</span>
         </button>
     );
