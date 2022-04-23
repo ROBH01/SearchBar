@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { debounce } from 'lodash';
 
 const DEVICE_TYPES = {
     mobile: 'Mobile',
@@ -26,20 +27,26 @@ const getDeviceType = (currentWidth) => {
  */
 const useMediaQuery = () => {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
     const [deviceType, setDeviceType] = useState(getDeviceType(window.innerWidth));
 
     const resizeHandler = () => {
         const currentWindowWidth = window.innerWidth;
+
         const deviceType = getDeviceType(currentWindowWidth);
+
         setWindowWidth(currentWindowWidth);
+
         setDeviceType(deviceType);
     };
 
-    useEffect(() => {
-        window.addEventListener('resize', resizeHandler);
+    const debouncedResizeHandler = debounce(resizeHandler, 50);
 
-        return () => window.removeEventListener('resize', resizeHandler);
-    }, [windowWidth]);
+    useEffect(() => {
+        window.addEventListener('resize', debouncedResizeHandler);
+
+        return () => window.removeEventListener('resize', debouncedResizeHandler);
+    }, [debouncedResizeHandler, windowWidth]);
 
     return deviceType;
 };
