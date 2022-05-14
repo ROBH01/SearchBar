@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import Button from '../Button';
 import House from './House';
 import useGameOfThronesFetch from './useGameOfThronesFetch';
@@ -7,6 +7,7 @@ import { HiOutlineSpeakerphone } from 'react-icons/hi';
 import { BiRightArrowAlt } from 'react-icons/bi';
 
 import styles from './GameOfThrones.module.css';
+import { debounce } from 'lodash';
 
 const GameOfThrones = () => {
     const { slug, results, setSlug } = useGameOfThronesFetch();
@@ -24,15 +25,19 @@ const GameOfThrones = () => {
         alert(message);
     }, []);
 
+    const debouncedChangeHandler = useMemo(
+        () => debounce(({ target: { value } }) => setSlug(value.toLowerCase()), 800),
+        [setSlug],
+    );
+
     return (
         <>
             <main>
                 <input
                     type="search"
                     placeholder="Type your favorite house"
-                    value={slug}
                     className={styles.searchInput}
-                    onChange={(e) => setSlug(e.target.value.toLowerCase())}
+                    onChange={debouncedChangeHandler}
                 />
                 {hasResults ? <House family={results[0]} /> : <NoResults />}
             </main>

@@ -21,26 +21,25 @@ const getDeviceType = (currentWidth) => {
     return deviceType;
 };
 
+const windowInnerWidth = () => window.innerWidth;
+
 /**
  * Custom hook that returns the `deviceType` based on the width of the inner window.
  * @returns deviceType `Mobile`|`Tablet`|`Desktop`
  */
 const useMediaQuery = () => {
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-    const [deviceType, setDeviceType] = useState(getDeviceType(window.innerWidth));
+    const [windowWidth, setWindowWidth] = useState(windowInnerWidth());
+    const [deviceType, setDeviceType] = useState(getDeviceType(windowInnerWidth()));
 
     const resizeHandler = () => {
-        const currentWindowWidth = window.innerWidth;
-
+        const currentWindowWidth = windowInnerWidth();
         const deviceType = getDeviceType(currentWindowWidth);
 
         setWindowWidth(currentWindowWidth);
-
         setDeviceType(deviceType);
     };
 
-    const debouncedResizeHandler = debounce(resizeHandler, 50);
+    const debouncedResizeHandler = debounce(resizeHandler, 500);
 
     useEffect(() => {
         window.addEventListener('resize', debouncedResizeHandler);
